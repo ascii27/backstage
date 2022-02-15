@@ -23,6 +23,16 @@ variables:
 
 
 stages:
+- stage: CI
+  displayName: CI
+  jobs:
+  - job: CI
+    displayName: CI
+    timeoutInMinutes: 10
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - bash: yarn install --frozen-lockfile && yarn tsc && yarn build 
 - stage: Build
   displayName: Build stage
   jobs:
