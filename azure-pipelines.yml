@@ -28,7 +28,7 @@ stages:
   jobs:
   - job: CI
     displayName: CI 
-    timeoutInMinutes: 5 
+    timeoutInMinutes: 15 
     pool: mypool
     steps:
     - bash: yarn install --frozen-lockfile
