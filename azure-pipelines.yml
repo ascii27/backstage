@@ -26,23 +26,13 @@ stages:
 - stage: CI
   displayName: CI
   jobs:
-  - job: YarnInstall 
-    displayName: Yarn Install 
+  - job: CI
+    displayName: CI 
     timeoutInMinutes: 5 
     pool: mypool
     steps:
     - bash: yarn install --frozen-lockfile
-  - job: YarnTSC 
-    displayName: Yarn tsc 
-    timeoutInMinutes: 5
-    pool: mypool
-    steps:
     - bash: yarn tsc
-  - job: YarnBuild
-    displayName: Yarn build
-    timeoutInMinutes: 5 
-    pool: mypool
-    steps:
     - bash: yarn build 
 - stage: Build
   displayName: Build stage
