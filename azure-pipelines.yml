@@ -38,7 +38,7 @@ stages:
     pool: mypool
     steps:
     - bash: yarn tsc
-- job: YarnBuild
+  - job: YarnBuild
     displayName: Yarn build
     timeoutInMinutes: 5 
     pool: mypool
