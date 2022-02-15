@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: asciibackstage 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: asciibackstage
+  template:
+    metadata:
+      labels:
+        app: asciibackstage 
+    spec:
+      containers:
+        - name: asciibackstage 
+          image: gallowayacr12345.azurecr.io/asciibackstage
+          ports:
+          - containerPort: 80
