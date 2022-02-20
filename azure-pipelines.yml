@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: 'f7a85630-a98a-4d43-8832-fd9d8659504a'
   imageRepository: 'asciibackstage'
   containerRegistry: 'gallowayacr12345.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: '**/packages/backend/Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'gallowayacr12345435253e0-auth'
 
@@ -34,20 +34,4 @@ stages:
     - bash: yarn install --frozen-lockfile
     - bash: yarn tsc
     - bash: yarn build 
-- stage: Build
-  displayName: Build stage
-  dependsOn: CI
-  jobs:
-  - job: Build
-    displayName: Build
-    pool: mypool
-    steps:
-    - task: Docker@2
-      displayName: Build and push an image to container registry
-      inputs:
-        command: buildAndPush
-        repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
-        containerRegistry: $(dockerRegistryServiceConnection)
-        tags: |
-          $(tag)
+    - bash: docker image build . -f packages/backend/Dockerfile --tag backstage
