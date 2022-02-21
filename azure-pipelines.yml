@@ -28,11 +28,17 @@ stages:
   jobs:
   - job: CI
     displayName: CI 
-    timeoutInMinutes: 15 
+    timeoutInMinutes: 20 
     pool: mypool
     steps:
     - bash: yarn install --frozen-lockfile
     - bash: yarn tsc
     - bash: yarn build 
     - bash: docker image build . -f packages/backend/Dockerfile --tag backstage
-    - bash: docker push gallowayacr12345.azurecr.io/asciibackstage:$(tag) 
+    - task: Docker@2
+      displayName: Push image
+      inputs:
+        containerRegistry: $(dockerRegistryServiceConnection)
+        repository: $(imageRepository)
+        command: push
+        tags: $(tag)
