@@ -35,7 +35,7 @@ stages:
     - bash: yarn tsc
     - bash: yarn build 
     - bash: docker image build . -f packages/backend/Dockerfile --tag backstage
-    - bash: docker image tag backstage $(dockerRegistryServiceConnection)/$(imageRepository):$(tag)
+    - bash: docker image tag backstage ***/$(imageRepository):$(tag)
     - task: Docker@2
       displayName: Push image
       inputs:
