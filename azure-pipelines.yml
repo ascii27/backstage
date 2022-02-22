@@ -11,7 +11,7 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'f7a85630-a98a-4d43-8832-fd9d8659504a'
+  dockerRegistryServiceConnection: '08146ef3-8f96-4d3a-b325-45aed7d2690d'
   imageRepository: 'asciibackstage'
   containerRegistry: 'gallowayacr12345.azurecr.io'
   dockerfilePath: './packages/backend/Dockerfile'
