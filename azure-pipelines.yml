@@ -34,11 +34,10 @@ stages:
     - bash: yarn install --frozen-lockfile
     - bash: yarn tsc
     - bash: yarn build 
-    - bash: docker build . -f packages/backend/Dockerfile -t $(dockerRegistryServiceConnection)/$(imageRepository):$(tag) 
+    - bash: docker build . -f packages/backend/Dockerfile -t $(containerRegistry)/$(imageRepository):$(tag) 
     - task: Docker@2
-      displayName: Push image
+      displayName: Login to ACR
       inputs:
-        containerRegistry: $(containerRegistry)
-        repository: $(imageRepository)
-        command: push
-        tags: $(tag)
+        command: login
+        containerRegistry: $(dockerRegistryServiceConnection) 
+    - bash: docker push $(containerRegistry)/$(imageRepository):$(tag)
