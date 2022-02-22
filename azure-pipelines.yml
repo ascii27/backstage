@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: 'f7a85630-a98a-4d43-8832-fd9d8659504a'
   imageRepository: 'asciibackstage'
   containerRegistry: 'gallowayacr12345.azurecr.io'
-  dockerfilePath: '**/packages/backend/Dockerfile'
+  dockerfilePath: './packages/backend/Dockerfile'
   tag: '$(Build.BuildId)'
   buildContext: '.'
   imagePullSecret: 'gallowayacr12345435253e0-auth'
